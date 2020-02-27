@@ -1,0 +1,11 @@
+{
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "setupFilesAfterEnv": ["<rootDir>/setupEnzyme.js"],
+  "moduleFileExtensions": ["js", "jsx", "json", "node"],
+  "moduleNameMapper": {
+      "^.+\\.(css|scss)$": "babel-jest",
+      "^.+\\.(svg)$": "identity-obj-proxy"
+    }
+}

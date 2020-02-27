@@ -1,0 +1,29 @@
+.another-slider {
+  &__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 5px solid	#C0C0C0;
+    cursor: pointer;
+
+    &-wrap { 
+      &:not(:last-child) {
+        margin-right: 5px;
+      }
+    }
+    &.active {
+      background-color:	#C0C0C0;
+    }
+  }
+  &__dot_flat {
+    width: 10px;
+    height: 2px;
+    background-color: #fff;
+    cursor: pointer;
+
+    &.active {
+      background-color:	rgba(0,0,0,.8);
+    }
+  }
+}
