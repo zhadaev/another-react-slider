@@ -2,6 +2,7 @@
   "roots": [
     "<rootDir>/src"
   ],
+  "testRegex": ".test.jsx",
   "setupFilesAfterEnv": ["<rootDir>/setupEnzyme.js"],
   "moduleFileExtensions": ["js", "jsx", "json", "node"],
   "moduleNameMapper": {

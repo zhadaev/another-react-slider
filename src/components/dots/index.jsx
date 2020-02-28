@@ -18,7 +18,7 @@ const Dots = ({ dot, activeSlideIdx, slides, setActiveSlideIdx }) => {
 
 Dots.propTypes = {
   dot: PropTypes.func,
-  activeSlideIndex: PropTypes.number.isRequired,
+  activeSlideIndex: PropTypes.number,
   slides: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired

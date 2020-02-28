@@ -16,7 +16,8 @@ const Dot = ({isActive, dot }) => {
   
 
 Dot.propTypes = {
-  isActive: PropTypes.bool
+  isActive: PropTypes.bool.isRequired,
+  dot: PropTypes.func
 }
 
 export default Dot

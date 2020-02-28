@@ -2,23 +2,11 @@ import React from 'react'
 import Enzyme, { shallow, mount } from 'enzyme'
 import Slider from '../components/slider'
 import Adapter from 'enzyme-adapter-react-16'
+import { slides } from './mocks'
 
 Enzyme.configure({ adapter: new Adapter() })
 
-const slides = [
-  {
-    id: 1,
-    text: 'Jest testing',
-    image: 'https://via.placeholder.com/150'
-  },
-  {
-    id: 2,
-    text: 'React testing',
-    image: 'https://via.placeholder.com/200'
-  }
-]
-
-const Slide = (props) => <div className='slide-item'>{props.text}</div>
+const Slide = ({ data: { text }}) =><div className='slide-item'>{text}</div>
 
 describe('Slider component', () => {
   let wrapper
@@ -35,19 +23,17 @@ describe('Slider component', () => {
     expect(wrapper.find('.slide-item')).toHaveLength(slides.length)
   })
 
-  xit('renders proper data', () => {
-    expect(wrapper.first('.slide-item').text()).toEqual(slides.shift().text)
+  it('renders proper data', () => {
+    expect(wrapper.find('.slide-item').first().text()).toEqual(slides.shift().text)
   })
-})
 
-describe('Slider component navigation', () => {
   it('doesn\'t render dot navigation', () => {
-    const wrapper = mount(<Slider data={slides} slideEl={Slide} hideDots/>)
+    wrapper.setProps({ hideDots: true })
     expect(wrapper.exists('.another-slider__dots')).toBeFalsy()
   })
 
   it('doesn\'t render prev/next arrows', () => {
-    const wrapper = mount(<Slider data={slides} slideEl={Slide} hideNavigation />)
+    wrapper.setProps({ hideNavigation: true })
     expect(wrapper.exists('.another-slider__nav-wrap')).toBeFalsy()
   })
 })
