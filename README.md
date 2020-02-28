@@ -5,6 +5,9 @@
 ### Demo
 [http://zhadaev.github.io/another-react-slider](http://zhadaev.github.io/another-react-slider/index.html)
 
+### Sandbox
+[https://codesandbox.io](https://codesandbox.io/s/delicate-mountain-vzqzp)
+
 ### Installation
 
 ```
