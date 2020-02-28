@@ -40,8 +40,8 @@ function App() {
     <div className="App">
       <div className="container">
         <Header large>Another react slider usage examples</Header>
-        <Header>Basic usage with autoplay</Header>
-        <Slider slideEl={Slide} autoPlay={4000} data={slides} />
+        <Header>Basic usage</Header>
+        <Slider slideEl={Slide} data={slides} />
         <SyntaxHighlighter language="javascript" style={ocean}>
           {`
             import React from 'react'
@@ -63,7 +63,7 @@ function App() {
               ]
               const Slide = ({ data: { image } }) => <img src={image} alt="" />
 
-              return <Slider slideEl={Slide} autoPlay={4000} data={slides} />
+              return <Slider slideEl={Slide} data={slides} />
             }
           `}
         </SyntaxHighlighter>
