@@ -59,6 +59,7 @@ const Slider = ({ data, hideNavigation, hideDots, autoPlay, slideEl, navPrevEl, 
             dot={navDotEl} 
             slides={data} 
             activeSlideIdx={activeSlideIdx} 
+            setActiveSlideIdx={setActiveSlideIdx}
           />
         )
       }
