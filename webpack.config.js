@@ -1,12 +1,13 @@
 const Path = require('path')
 const TerserPlugin = require('terser-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const src = Path.resolve(__dirname, 'src')
 const dest = Path.resolve(__dirname, 'dist')
 
 module.exports = {
   mode: 'production',
-  entry: Path.join(src, 'index.jsx'),
+  entry: Path.join(src, 'index.js'),
   output: {
     path: dest,
     filename: 'index.js',
@@ -50,20 +51,11 @@ module.exports = {
       }
     ]
   },
-  externals: {
-    react: {          
-      commonjs: "react",          
-      commonjs2: "react",          
-      amd: "React",          
-      root: "React"      
-    },      
-    "react-dom": {          
-      commonjs: "react-dom",          
-      commonjs2: "react-dom",          
-      amd: "ReactDOM",          
-      root: "ReactDOM"      
-    }  
-  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: Path.join(src, 'template.html')
+    })
+  ],
   optimization: {
     minimize: true,
     minimizer: [
