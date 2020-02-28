@@ -2,17 +2,14 @@ import React, { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 import './index.scss'
-import Slide from '../slide'
-import NextArrow from '../next-arrow'
-import PrevArrow from '../prev-arrow'
 import Dots from '../dots'
+import Nav from '../nav'
+import HOC from '../../shared/hoc'
 
-const Slider = (props) => {
-  const sliderRef = useRef()
-  const nextBtnRef = useRef()
+const Slider = ({ data, hideNavigation, hideDots, autoPlay, slideEl, navPrevEl, navNextEl, navDotEl }) => {
+  const navRef = useRef()
   const [activeSlideIdx, setActiveSlideIdx] = useState(0)
-  const totalSlides = props.data.length
-
+  const totalSlides = data.length
   const changeSlide = (next) => {
     const nextActiveEl = next 
       ? (activeSlideIdx + 1) % totalSlides
@@ -21,29 +18,19 @@ const Slider = (props) => {
     setActiveSlideIdx(nextActiveEl)  
   }
 
-  const smoothTransition = () => {}
-
   useEffect(() => {
-    if (props.autoPlay) {
-      // TODO Refactor the line below
-      setInterval(() => { nextBtnRef.current.click() }, Number(props.autoPlay))
+    if (autoPlay) {
+      setInterval(() => { navRef.current.switchSlide() }, Number(autoPlay))
     }
   }, [])
   
-  // useEffect(() => {
-  //   sliderRef.current.addEventListener('transitionend', smoothTransition)
-  //   return () =>
-  //   sliderRef.current.removeEventListener('transitionend', smoothTransition)
-  // }, [activeSlideIdx])
-
-  const CustomDot = props.navDotEl ? DotHOC(props.navDotEl) : null
-  const SlideEl = Slide(props.slideEl)
-
+  const Slide = HOC(slideEl)
+  
   return (
     <div className="another-slider__wrapper">
-      <div ref={sliderRef} className="another-slider__slides">
+      <div className="another-slider__slides">
         {
-          props.data.map((slide, index) => (
+          data.map((slide, index) => (
             <div
               key={index}
               className={cn(
@@ -51,30 +38,29 @@ const Slider = (props) => {
                 index === activeSlideIdx && 'active'
               )}
             >
-              <SlideEl data={slide} />
+              <Slide data={slide} />
             </div>
           ))
         }
       </div>
       {
-        !props.hideNavigation && (
-          <>
-            <div onClick={() => changeSlide(false)} className="another-slider__nav-wrap_prev another-slider__nav-wrap">
-              <PrevArrow />
-            </div>
-            <div ref={nextBtnRef} onClick={() => changeSlide(true)} className="another-slider__nav-wrap_next another-slider__nav-wrap">
-              <NextArrow />
-            </div>
-          </>
+        !hideNavigation && (
+          <Nav
+            changeSlide={changeSlide}
+            ref={navRef}
+            navPrevEl={navPrevEl}
+            navNextEl={navNextEl}
+          />
         )
       }
       {
-        !props.hideDots && 
-        <Dots 
-          dot={props.navDotEl || null} 
-          slidesNum={totalSlides} 
-          activeSlideIdx={activeSlideIdx} 
-        />
+        !hideDots && (
+          <Dots 
+            dot={navDotEl} 
+            slides={data} 
+            activeSlideIdx={activeSlideIdx} 
+          />
+        )
       }
     </div>
   )

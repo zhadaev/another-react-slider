@@ -1,19 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Dot, { DotHOC } from './dot'
+import Dot from './dot'
+import HOC from '../../shared/hoc'
 
-const Dots = ({ dot, activeSlideIdx, slidesNum }) => {
-  const CustomDot = dot ? DotHOC(dot) : null
+const Dots = ({ dot, activeSlideIdx, slides }) => {
+  const CustomDot = dot && HOC(dot)
 
   return (
     <div className='another-slider__dots'>
       {
-        Array.from({ length: slidesNum }).map((_, index) => (
+        slides.map((_, index) => (
           <div className="another-slider__dot-wrap" key={index}>
             {
-              dot ? 
-              <CustomDot isActive={index === activeSlideIdx} /> :
-              <Dot isActive={index === activeSlideIdx} />
+              // dot ? 
+              // <CustomDot isActive={index === activeSlideIdx} /> :
+              <Dot dot={dot} isActive={index === activeSlideIdx} />
             }
           </div>
         ))
@@ -24,7 +25,11 @@ const Dots = ({ dot, activeSlideIdx, slidesNum }) => {
 
 Dots.propTypes = {
   dot: PropTypes.func,
-  activeSlideIndex: PropTypes.number
+  activeSlideIndex: PropTypes.number.isRequired,
+  slides: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    image: PropTypes.string.isRequired
+  })).isRequired,
 }
 
 export default Dots
