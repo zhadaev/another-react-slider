@@ -1,4 +1,5 @@
 const Path = require('path')
+const TerserPlugin = require('terser-webpack-plugin')
 
 const src = Path.resolve(__dirname, 'src')
 const dest = Path.resolve(__dirname, 'dist')
@@ -50,7 +51,27 @@ module.exports = {
     ]
   },
   externals: {
-    react: 'react',
-    'react-dom': 'react-dom'
+    react: {          
+      commonjs: "react",          
+      commonjs2: "react",          
+      amd: "React",          
+      root: "React"      
+    },      
+    "react-dom": {          
+      commonjs: "react-dom",          
+      commonjs2: "react-dom",          
+      amd: "ReactDOM",          
+      root: "ReactDOM"      
+    }  
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          keep_fnames: true,
+        },
+      }),
+    ],
   }
 }
