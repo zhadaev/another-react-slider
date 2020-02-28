@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
-import './index.scss'
 import Dots from '../dots'
 import Nav from '../nav'
 import HOC from '../../shared/hoc'
+import './index.scss'
 
 const Slider = ({ data, hideNavigation, hideDots, autoPlay, slideEl, navPrevEl, navNextEl, navDotEl }) => {
   const navRef = useRef()

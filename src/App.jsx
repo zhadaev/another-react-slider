@@ -39,6 +39,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
+        <Header large>Another react slider usage examples</Header>
         <Header>Basic usage with autoplay</Header>
         <Slider slideEl={Slide} autoPlay={4000} data={slides} />
         <SyntaxHighlighter language="javascript" style={ocean}>
@@ -181,7 +182,7 @@ function App() {
 }
 
 const Header = styled.div`
-  font-size: 20px;
+  font-size: ${({large}) => large ? '22px' : '18px'};
   font-weight: bold;
   font-family: Arial, sans-serif;
   margin: 20px 0;
