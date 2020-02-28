@@ -43,12 +43,15 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: 'url-loader',
-        options: {
-          fallback: 'file-loader',
-          name: '[name].[ext]'
-        }
-      }
+        use: [
+          {
+            loader: 'svg-url-loader',
+            options: {
+              limit: 10000,
+            },
+          },
+        ],
+      },
     ]
   },
   plugins: [

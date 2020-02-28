@@ -1,6 +1,6 @@
 import React from 'react'
-// import left from './left-arrow.svg'
-// import right from './right-arrow.svg'
+import left from './assets/left-arrow.svg'
+import right from './assets/right-arrow.svg'
 import Slider from './components/slider'
 import styled from 'styled-components'
 import './index.scss'
@@ -120,8 +120,8 @@ function App() {
         <Slider
           slideEl={Slide}
           data={slides}
-          // navPrevEl={CustomPrev}
-          // navNextEl={CustomNext}
+          navPrevEl={CustomPrev}
+          navNextEl={CustomNext}
           navDotEl={FlatDot}
         />
         <SyntaxHighlighter language="javascript" style={ocean}>
@@ -229,8 +229,8 @@ const PrevWrap = styled(NavWrap)`
   left 10px;
 `
 
-// const CustomPrev = () => <PrevWrap><img src={left} width={20} height={20} alt="Previous slide" /></PrevWrap>
-// const CustomNext = () => <NextWrap><img src={right} width={20} height={20} alt="Next slide" /></NextWrap>
+const CustomPrev = () => <PrevWrap><img src={left} width={20} height={20} alt="Previous slide" /></PrevWrap>
+const CustomNext = () => <NextWrap><img src={right} width={20} height={20} alt="Next slide" /></NextWrap>
 const FlatDot = styled.div`
   width: 10px;
   height: 5px;
