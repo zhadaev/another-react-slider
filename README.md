@@ -2,7 +2,7 @@
 
 `another-react-slider` is a customizable React Component that renders mixed content slider/carousel.
 
-### Installing
+## Installation
 
 ```
 npm install --save another-react-slider
