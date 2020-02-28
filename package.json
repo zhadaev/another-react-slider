@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "This is another react slider",
   "main": "./dist/index.js",
+  "homepage": "http://zhadaev.github.io/another-react-slider",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zhadaev/another-react-slider.git"
