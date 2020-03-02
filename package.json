@@ -17,10 +17,7 @@
     "react-dom": "^16.12.0"
   },
   "scripts": {
-    "dev": "webpack-dev-server --config webpack.config.dev.js",
-    "build": "webpack -p",
-    "build:example": "webpack --config webpack.config.demo.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack -p"
   },
   "author": "Ivan Zhadaev <ivan.zhadaev@gmail.com>",
   "license": "MIT",
