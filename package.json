@@ -1,6 +1,6 @@
 {
   "name": "another-react-slider",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "This is another react slider",
   "main": "./dist/index.js",
   "files": [
