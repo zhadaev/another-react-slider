@@ -32,4 +32,5 @@ yarn add another-react-slider
 | autoPlay | `number` | `no` | Enable autoplay and set delay to change slides automatically |
 | hideNavigation | `boolean` | `no` | Hide arrows slider navigation |
 | hideDots | `boolean` | `no` | Hide arrows slider navigation |
+| showPlayPause | `boolean` | `no` | Show play/pause button |
 

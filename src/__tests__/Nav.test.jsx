@@ -20,5 +20,6 @@ describe('Nav component', () => {
   it('renders custom next nav element', () => {
     const CustomNext = () => <div className="custom">Next</div>
     wrapper.setProps({ navPrevEl: CustomNext })
+    expect(wrapper.exists('.custom')).toBeTruthy()
   })
 })
