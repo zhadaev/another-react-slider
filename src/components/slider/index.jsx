@@ -7,21 +7,27 @@ import HOC from '../../shared/hoc'
 import './index.scss'
 
 const Slider = ({ data, hideNavigation, hideDots, showPlayPause, autoPlay, slideEl, navPrevEl, navNextEl, navDotEl }) => {
-  const navRef = useRef()
   const interval = useRef(false)
   const [activeSlideIdx, setActiveSlideIdx] = useState(0)
   const [isPaused, setPause] = useState(false)
   const totalSlides = data.length
   const changeSlide = (next) => {
-    clearInterval(interval.current)
+    autoPlay && clearInterval(interval.current)
     const nextActiveEl = next 
       ? (activeSlideIdx + 1) % totalSlides
       : (activeSlideIdx - 1 + totalSlides) % totalSlides
     setActiveSlideIdx(nextActiveEl)
     setPlayInterval()
   }
+  const setActiveSlideIdxWithInterval = (index) => {
+    autoPlay && clearInterval(interval.current)
+    setActiveSlideIdx(index)
+    setPlayInterval()
+  }
   const setPlayInterval = () => {
-    interval.current = setInterval(() => setActiveSlideIdx(prev => (prev + 1) % totalSlides), Number(autoPlay))
+    if (autoPlay) {
+      interval.current = setInterval(() => setActiveSlideIdx(prev => (prev + 1) % totalSlides), Number(autoPlay))
+    }
   }
   useEffect(() => {
     if (autoPlay) {
@@ -65,7 +71,6 @@ const Slider = ({ data, hideNavigation, hideDots, showPlayPause, autoPlay, slide
         !hideNavigation && (
           <Nav
             changeSlide={changeSlide}
-            ref={navRef}
             navPrevEl={navPrevEl}
             navNextEl={navNextEl}
           />
@@ -77,7 +82,7 @@ const Slider = ({ data, hideNavigation, hideDots, showPlayPause, autoPlay, slide
             dot={navDotEl} 
             slides={data} 
             activeSlideIdx={activeSlideIdx} 
-            setActiveSlideIdx={setActiveSlideIdx}
+            setActiveSlideIdx={setActiveSlideIdxWithInterval}
           />
         )
       }

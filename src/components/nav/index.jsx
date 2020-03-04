@@ -1,17 +1,12 @@
-import React, { useRef, forwardRef, useImperativeHandle } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import PrevArrow from './prev-arrow'
 import NextArrow from './next-arrow'
 import HOC from '../../shared/hoc'
 
-const Nav = forwardRef(({changeSlide, navPrevEl, navNextEl}, ref) => {
-  const nextBtnRef = useRef()
+const Nav = ({changeSlide, navPrevEl, navNextEl}) => {
   const CustomNextBtn = navNextEl && HOC(navNextEl)
   const CustomPrevBtn = navPrevEl && HOC(navPrevEl)
-
-  useImperativeHandle(ref, () => ({
-    switchSlide() { nextBtnRef.current.click() }
-  }))
 
   return (
     <>
@@ -22,7 +17,6 @@ const Nav = forwardRef(({changeSlide, navPrevEl, navNextEl}, ref) => {
         { navPrevEl ? <CustomPrevBtn /> : <PrevArrow /> }
       </div>
       <div
-        ref={nextBtnRef}
         onClick={() => changeSlide(true)}
         className="another-slider__nav-wrap_next another-slider__nav-wrap"
       >
@@ -31,7 +25,7 @@ const Nav = forwardRef(({changeSlide, navPrevEl, navNextEl}, ref) => {
     </>
   )
   
-})
+}
 
 Nav.propTypes = {
   changeSlide: PropTypes.func,
