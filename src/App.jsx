@@ -103,7 +103,7 @@ function App() {
         </details>
         <div style={{ margin: '10px 0' }} />
         <Header>With play/pause control</Header>
-        <Slider slideEl={Slide} data={slides} showPlayPause hideDots hideNavigation autoPlay={5000} />
+        <Slider slideEl={Slide} data={slides} showPlayPause autoPlay={5000} />
         <details>
           <summary>Code</summary>
           <SyntaxHighlighter language="react" style={ocean}>
@@ -127,7 +127,7 @@ function App() {
                 ]
                 const Slide = ({ data: { image } }) => <img src={image} alt="" />
 
-                return <Slider slideEl={Slide} data={slides} showPlayPause hideDots hideNavigation autoPlay={5000} />
+                return <Slider slideEl={Slide} data={slides} showPlayPause autoPlay={5000} />
               }
             `}
           </SyntaxHighlighter>
