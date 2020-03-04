@@ -1,8 +1,12 @@
 {
   "name": "another-react-slider",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "This is another react slider",
   "main": "./dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "homepage": "http://zhadaev.github.io/another-react-slider",
   "repository": {
     "type": "git",
@@ -13,10 +17,7 @@
     "react-dom": "^16.12.0"
   },
   "scripts": {
-    "dev": "webpack-dev-server --config webpack.config.dev.js",
-    "build": "webpack",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "build": "webpack -p"
   },
   "author": "Ivan Zhadaev <ivan.zhadaev@gmail.com>",
   "license": "MIT",
@@ -30,17 +31,13 @@
     "@babel/core": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
-    "babel-jest": "^25.1.0",
     "babel-loader": "^8.0.6",
     "classnames": "^2.2.6",
     "css-loader": "^3.4.2",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
     "file-loader": "^5.1.0",
     "gh-pages": "^2.2.0",
     "html-webpack-plugin": "^3.2.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^25.1.0",
     "node-sass": "^4.13.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",

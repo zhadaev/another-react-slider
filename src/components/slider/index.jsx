@@ -6,28 +6,46 @@ import Nav from '../nav'
 import HOC from '../../shared/hoc'
 import './index.scss'
 
-const Slider = ({ data, hideNavigation, hideDots, autoPlay, slideEl, navPrevEl, navNextEl, navDotEl }) => {
+const Slider = ({ data, hideNavigation, hideDots, showPlayPause, autoPlay, slideEl, navPrevEl, navNextEl, navDotEl }) => {
   const navRef = useRef()
+  const interval = useRef(false)
   const [activeSlideIdx, setActiveSlideIdx] = useState(0)
+  const [isPaused, setPause] = useState(false)
   const totalSlides = data.length
   const changeSlide = (next) => {
+    clearInterval(interval.current)
     const nextActiveEl = next 
       ? (activeSlideIdx + 1) % totalSlides
       : (activeSlideIdx - 1 + totalSlides) % totalSlides
-
-    setActiveSlideIdx(nextActiveEl)  
+    setActiveSlideIdx(nextActiveEl)
+    setPlayInterval()
   }
-
+  const setPlayInterval = () => {
+    interval.current = setInterval(() => setActiveSlideIdx(prev => (prev + 1) % totalSlides), Number(autoPlay))
+  }
   useEffect(() => {
     if (autoPlay) {
-      setInterval(() => { navRef.current.switchSlide() }, Number(autoPlay))
+      setPlayInterval()
+      return () => {
+        clearInterval(interval.current) // clear interval on component unmount
+      };
     }
   }, [])
-  
   const Slide = HOC(slideEl)
   
   return (
     <div className="another-slider__wrapper">
+      {
+        showPlayPause && (
+          <>
+            {
+              !isPaused ?
+              <div className="another-slider__pause" onClick={() => { setPause(true); clearInterval(interval.current)}} /> :
+              <div className="another-slider__play" onClick={() => {setPause(false); setPlayInterval()}} />
+            }
+          </>
+        )
+      }
       <div className="another-slider__slides">
         {
           data.map((slide, index) => (
@@ -74,11 +92,9 @@ Slider.propTypes = {
   navDotEl: PropTypes.func,
   autoPlay: PropTypes.number,
   hideNavigation: PropTypes.bool,
+  showPlayPause: PropTypes.bool,
   hideDots: PropTypes.bool,
-  data: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired
-  })).isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 }
 
 export default Slider

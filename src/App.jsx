@@ -42,35 +42,102 @@ function App() {
         <Header large>Another react slider usage examples</Header>
         <Header>Basic usage</Header>
         <Slider slideEl={Slide} data={slides} />
-        <SyntaxHighlighter language="javascript" style={ocean}>
-          {`
-            import React from 'react'
+        <details>
+          <summary>Code</summary>
+          <SyntaxHighlighter language="javascript" style={ocean}>
+            {`
+              import React from 'react'
 
-            export default () => {
-              const slides = [
-                {
-                  id: 1,
-                  image: 'https://picsum.photos/id/237/1000/400'
-                },
-                {
-                  id: 2,
-                  image: 'https://picsum.photos/id/238/1000/400'
-                },
-                {
-                  id: 3,
-                  image: 'https://picsum.photos/id/239/1000/400'
-                }
-              ]
-              const Slide = ({ data: { image } }) => <img src={image} alt="" />
+              export default () => {
+                const slides = [
+                  {
+                    id: 1,
+                    image: 'https://picsum.photos/id/237/1000/400'
+                  },
+                  {
+                    id: 2,
+                    image: 'https://picsum.photos/id/238/1000/400'
+                  },
+                  {
+                    id: 3,
+                    image: 'https://picsum.photos/id/239/1000/400'
+                  }
+                ]
+                const Slide = ({ data: { image } }) => <img src={image} alt="" />
 
-              return <Slider slideEl={Slide} data={slides} />
-            }
-          `}
-        </SyntaxHighlighter>
+                return <Slider slideEl={Slide} data={slides} />
+              }
+            `}
+          </SyntaxHighlighter>
+        </details>
         <div style={{ margin: '10px 0' }} />
+        <Header>With autoplay</Header>
+        <Slider slideEl={Slide} data={slides} autoPlay={5000} />
+        <details>
+          <summary>Code</summary>
+          <SyntaxHighlighter language="react" style={ocean}>
+            {`
+              import React from 'react'
+
+              export default () => {
+                const slides = [
+                  {
+                    id: 1,
+                    image: 'https://picsum.photos/id/237/1000/400'
+                  },
+                  {
+                    id: 2,
+                    image: 'https://picsum.photos/id/238/1000/400'
+                  },
+                  {
+                    id: 3,
+                    image: 'https://picsum.photos/id/239/1000/400'
+                  }
+                ]
+                const Slide = ({ data: { image } }) => <img src={image} alt="" />
+
+                return <Slider slideEl={Slide} data={slides} autoPlay={5000} />
+              }
+            `}
+          </SyntaxHighlighter>
+        </details>
+        <div style={{ margin: '10px 0' }} />
+        <Header>With play/pause control</Header>
+        <Slider slideEl={Slide} data={slides} showPlayPause hideDots hideNavigation autoPlay={5000} />
+        <details>
+          <summary>Code</summary>
+          <SyntaxHighlighter language="react" style={ocean}>
+            {`
+              import React from 'react'
+
+              export default () => {
+                const slides = [
+                  {
+                    id: 1,
+                    image: 'https://picsum.photos/id/237/1000/400'
+                  },
+                  {
+                    id: 2,
+                    image: 'https://picsum.photos/id/238/1000/400'
+                  },
+                  {
+                    id: 3,
+                    image: 'https://picsum.photos/id/239/1000/400'
+                  }
+                ]
+                const Slide = ({ data: { image } }) => <img src={image} alt="" />
+
+                return <Slider slideEl={Slide} data={slides} showPlayPause hideDots hideNavigation autoPlay={5000} />
+              }
+            `}
+          </SyntaxHighlighter>
+        </details>
+        
         <Header>Mixed content with hidden dots navigation</Header>
         <Slider slideEl={TextSlide} data={text} hideDots />
-        <SyntaxHighlighter language="javascript" style={ocean}>
+        <details>
+          <summary>Code</summary>
+          <SyntaxHighlighter language="javascript" style={ocean}>
           {`
             import React from 'react'
 
@@ -115,6 +182,7 @@ function App() {
             }
           `}
         </SyntaxHighlighter>
+        </details>
         <div style={{ margin: '10px 0' }} />
         <Header>Custom navigation arrows and dots</Header>
         <Slider
@@ -124,7 +192,9 @@ function App() {
           navNextEl={CustomNext}
           navDotEl={FlatDot}
         />
-        <SyntaxHighlighter language="javascript" style={ocean}>
+        <details>
+          <summary>Code</summary>
+          <SyntaxHighlighter language="javascript" style={ocean}>
           {`
             import React from 'react'
 
@@ -176,6 +246,7 @@ function App() {
             }
           `}
         </SyntaxHighlighter>
+        </details>    
       </div>
     </div>
   );

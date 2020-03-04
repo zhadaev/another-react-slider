@@ -2,3 +2,5 @@ src
 demo
 .babelrc
 webpack.config.js
+jest.config.json
+setupEnzyme.js
